@@ -1,0 +1,4 @@
+pyautogui~=0.9.54
+mss~=9.0.1
+pyperclip~=1.8.2
+ruamel.yaml
