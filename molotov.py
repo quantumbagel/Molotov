@@ -37,12 +37,14 @@ config = ry.YAML().load(open('config.yml'))
 print('done')
 print("Hover over the Join Game button to start!")
 should_configure = True
-for item in config.values():
-    if item != 0.05:  # default delay setting
-        for sub_item in item.values():
-            if sub_item:
-                should_configure = False
-                break
+for item in config.keys():
+    if item == 'delay':
+        continue
+    item = config[item]
+    for sub_item in item.values():
+        if sub_item:
+            should_configure = False
+            break
 
 if should_configure or should_really_reconfigure:
     print("Fresh installation of Molotov detected!")
@@ -270,11 +272,11 @@ def main():
                 break
             dprint("main", "Now trying word " + word, "with a score of " + str(word_dict[word]) + "...")
             submit_word(word)
-            time.sleep(0.1)
+            time.sleep(0.5)  # to ensure we catch turn changes
             c = check_turn()
             g = get_bomb()
             dprint("main", 'Text is', g)
-            if c == 1 or g == subset:
+            if c == 1 and g == subset:
                 dprint('main', 'failed')
                 better_words.pop(better_words.index(word))
                 continue
