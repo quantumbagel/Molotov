@@ -35,7 +35,6 @@ print("done", flush=True)
 print("Loading configuration...", end='', flush=True)
 config = ry.YAML().load(open('config.yml'))
 print('done')
-print("Hover over the Join Game button to start!")
 should_configure = True
 for item in config.keys():
     if item == 'delay':
@@ -53,6 +52,7 @@ if should_configure or should_really_reconfigure:
     print("2. Select this window, and press enter when you are hovering over the 'Join Game' button")
     input("Press enter...")
     join_game_pos = pyautogui.position()
+    input("Move your mouse off of it and press enter again:")
     join_game_rgb = pyautogui.pixel(join_game_pos[0], join_game_pos[1])
     print("3. Now, start the game. (If you have no friends you can use Incognito/private browsing mode)")
     print("4. Select this window, and hover over the Bomb Party text (the two/three letters you must match)"
@@ -234,6 +234,7 @@ def main():
             wait_for_turn_game()
     while True:
         dprint("main", "Turn loop started!")
+        time.sleep(0.3)
         start = time.time()
         t = time.time()
         subset = get_bomb()
@@ -267,7 +268,7 @@ def main():
         for word in ranked_words:
             wor += 1
             if wor > 1:
-                dprint("main", "FAILSAFE: TOO MANY WORDS WRONG")
+                dprint("main", "failed: restarting!")
                 dprint("main", time.time() - start, "secs for turn")
                 break
             dprint("main", "Now trying word " + word, "with a score of " + str(word_dict[word]) + "...")
