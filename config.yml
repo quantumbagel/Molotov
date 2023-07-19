@@ -1,17 +1,17 @@
 join-game:
-  x: 0
-  y: 0
+  x: 482
+  y: 1404
 join-game-color:
-  r: 0
-  g: 0
-  b: 0
+  r: 61
+  g: 189
+  b: 49
 letter:
-  x: 0
-  y: 0
+  x: 490
+  y: 782
 current-turn:
-  r: 0
-  g: 0
-  b: 0
+  r: 25
+  g: 21
+  b: 19
 record:
   wins: 0
   losses: 0

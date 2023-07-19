@@ -78,7 +78,11 @@ if should_configure or should_really_reconfigure:
         'current-turn': {
             'r': your_turn_rgb.red,
             'g': your_turn_rgb.green,
-            'b': your_turn_rgb.blue}
+            'b': your_turn_rgb.blue},
+        'record': {
+            'wins': config['record']['wins'],
+            'losses': config['record']['losses']},
+        'delay': config['delay']
     }
     ry.YAML().dump(new_conf, open('config.yml', 'w'))
     sys.exit(0)
@@ -266,8 +270,8 @@ def main():
                 break
             dprint("main", "Now trying word " + word, "with a score of " + str(word_dict[word]) + "...")
             submit_word(word)
-            c = 0
             time.sleep(0.1)
+            c = check_turn()
             g = get_bomb()
             dprint("main", 'Text is', g)
             if c == 1 or g == subset:
